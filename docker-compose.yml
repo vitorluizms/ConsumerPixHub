@@ -1,0 +1,15 @@
+services:
+  consumer:
+    container_name: consumer
+    image: consumermw
+    depends_on:
+      - rabbitmq
+    networks:
+      - mynetwork
+
+volumes: 
+  rabbitmq-volume:
+
+networks:
+  mynetwork:
+    driver: bridge

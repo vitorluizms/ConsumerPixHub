@@ -1,0 +1,17 @@
+/home/vitor/aceleracao-c#/ConsumerMyWallet/bin/Debug/net8.0/ConsumerMyWallet
+/home/vitor/aceleracao-c#/ConsumerMyWallet/bin/Debug/net8.0/ConsumerMyWallet.deps.json
+/home/vitor/aceleracao-c#/ConsumerMyWallet/bin/Debug/net8.0/ConsumerMyWallet.runtimeconfig.json
+/home/vitor/aceleracao-c#/ConsumerMyWallet/bin/Debug/net8.0/ConsumerMyWallet.dll
+/home/vitor/aceleracao-c#/ConsumerMyWallet/bin/Debug/net8.0/ConsumerMyWallet.pdb
+/home/vitor/aceleracao-c#/ConsumerMyWallet/bin/Debug/net8.0/RabbitMQ.Client.dll
+/home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ConsumerMyWallet.csproj.AssemblyReference.cache
+/home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ConsumerMyWallet.GeneratedMSBuildEditorConfig.editorconfig
+/home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ConsumerMyWallet.AssemblyInfoInputs.cache
+/home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ConsumerMyWallet.AssemblyInfo.cs
+/home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ConsumerMyWallet.csproj.CoreCompileInputs.cache
+/home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/Consumer.98363D5D.Up2Date
+/home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ConsumerMyWallet.dll
+/home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/refint/ConsumerMyWallet.dll
+/home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ConsumerMyWallet.pdb
+/home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ConsumerMyWallet.genruntimeconfig.cache
+/home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ref/ConsumerMyWallet.dll
