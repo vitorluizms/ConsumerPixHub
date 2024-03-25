@@ -16,6 +16,8 @@ ConnectionFactory factory = new()
     Password = "admin"
 };
 
+HttpClient httpClient = new();
+string PRODUCER_WEBHOOK = "http://localhost:8080/payments/";
 var connection = factory.CreateConnection();
 var channel = connection.CreateModel();
 
@@ -33,8 +35,6 @@ Console.WriteLine("Waiting for messages.");
 
 consumer.Received += async (model, ea) =>
 {
-    HttpClient httpClient = new();
-
     byte[] body = ea.Body.ToArray();
     var message = Encoding.UTF8.GetString(body);
     var payment = JsonSerializer.Deserialize<Payment>(message);
@@ -47,15 +47,13 @@ consumer.Received += async (model, ea) =>
 
     string status;
     HttpResponseMessage destinyProviderResponse;
-    string PSP_WEBHOOK = "http://localhost:5039/payments/pix";
-    string PRODUCER_WEBHOOK = "http://localhost:8080/payments/";
 
     Console.WriteLine($"Processing payment {payment.PaymentId}.");
     try
     {
         CancellationTokenSource cancellation = new(TimeSpan.FromMinutes(2));
         destinyProviderResponse = await httpClient
-          .PostAsJsonAsync(PSP_WEBHOOK, payment, cancellation.Token);
+          .PostAsJsonAsync(payment.Webhook, payment, cancellation.Token);
 
         if (destinyProviderResponse.IsSuccessStatusCode)
         {
@@ -73,15 +71,31 @@ consumer.Received += async (model, ea) =>
     catch (OperationCanceledException)
     {
         Console.WriteLine("Error: Timeout");
-
         channel.BasicReject(ea.DeliveryTag, false);
         status = "FAILED";
     }
-
+    catch (HttpRequestException ex)
+    {
+        Console.WriteLine($"Error: {ex.Message}");
+        channel.BasicReject(ea.DeliveryTag, false);
+        status = "FAILED";
+    }
     var request = new HttpRequestMessage(new HttpMethod("PATCH"), $"{PRODUCER_WEBHOOK}{payment.PaymentId}/{status}");
-
-    await httpClient.SendAsync(request);
-    await httpClient.PatchAsJsonAsync(PSP_WEBHOOK, new TransferStatusDTO { Status = status, Id = payment.PaymentId });
+    using (var httpClient = new HttpClient())
+    {
+        try
+        {
+            HttpResponseMessage producerResponse = await httpClient.SendAsync(request);
+            if (!producerResponse.IsSuccessStatusCode)
+            {
+                Console.WriteLine($"Failed to update producer. Status code: {producerResponse.StatusCode}");
+            }
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Error sending PATCH request to producer: {ex.Message}");
+        }
+    }
 };
 
 channel.BasicConsume(

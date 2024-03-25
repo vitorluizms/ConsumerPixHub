@@ -15,3 +15,4 @@
 /home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ConsumerMyWallet.pdb
 /home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ConsumerMyWallet.genruntimeconfig.cache
 /home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ref/ConsumerMyWallet.dll
+/home/vitor/aceleracao-c#/ConsumerMyWallet/obj/Debug/net8.0/ConsumerMyWallet.sourcelink.json
